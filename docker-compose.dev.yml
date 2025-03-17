@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+    app:
+        build:
+            context: ./
+            dockerfile: dev.Dockerfile
+        image: tug-alpine
+        container_name: tug-panel
+        restart: unless-stopped
+        working_dir: /var/www/html
+        tty: true
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./:/var/www/html
+        networks:
+            - tug-ag
+    db:
+      image: mysql:9
+      container_name: tug-db
+      environment:
+        - MYSQL_ROOT_PASSWORD=1234567
+        - MYSQL_PASSWORD=123456
+        - MYSQL_DATABASE=tug_db
+        - MYSQL_USER=tug_db_user
+      volumes:
+        - tug_db_data:/var/lib/mysql
+        - .docker/dev/config/mysqlconf:/etc/mysql/conf.d
+      networks:
+        - tug-ag
+
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      depends_on:
+        - db
+      environment:
+        - PMA_HOST=db
+        - UPLOAD_LIMIT=64M
+      restart: unless-stopped
+      ports:
+        - "8081:80"
+      networks:
+        - tug-ag
+
+#    redis:
+#        image: redis:alpine
+#        container_name: tug-redis
+#        hostname: redis
+#        networks:
+#            - tug-ag
+#        healthcheck:
+#            test: [ "CMD", "redis-cli", "ping" ]
+#            retries: 3
+#            timeout: 5s
+
+networks:
+    tug-ag:
+
+volumes:
+  tug_db_data:
+
