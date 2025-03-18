@@ -1,3 +1,5 @@
 {
-    "Vehicle" : "vehicle"
+    "Vehicle" : "vehicle",
+    "Driver" : "driver",
+    "" : ""
 }

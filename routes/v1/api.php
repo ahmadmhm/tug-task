@@ -10,4 +10,5 @@ Route::get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('vehicles', V1\VehicleController::class);
+    Route::apiResource('drivers', V1\DriverController::class);
 });
