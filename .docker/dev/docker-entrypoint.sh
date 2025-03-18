@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "Composer dump-autoload"
-#composer dump-autoload
+composer dump-autoload
 echo "Run Migration & Seeder"
 php artisan migrate
 echo "App install was successful"
