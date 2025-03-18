@@ -22,12 +22,17 @@ class VehicleController extends BaseApiController
 
     public function store(StoreRequest $request)
     {
-        $vehicle = $this->vehicleRepository->store($request->validated());
+        try {
 
-        return $this->generateResponse(
-            new VehicleResource($vehicle),
-            message: __('messages.items.success_creation', ['item' => __('Vehicle')]),
-            status: Response::HTTP_CREATED
-        );
+            $vehicle = $this->vehicleRepository->store($request->validated());
+
+            return $this->generateResponse(
+                new VehicleResource($vehicle),
+                message: __('messages.items.success_creation', ['item' => __('Vehicle')]),
+                status: Response::HTTP_CREATED
+            );
+        } catch (\Exception $e) {
+            return $this->generateResponse(message: $e->getMessage(), status: Response::HTTP_BAD_REQUEST);
+        }
     }
 }

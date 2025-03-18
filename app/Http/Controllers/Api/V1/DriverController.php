@@ -22,12 +22,16 @@ class DriverController extends BaseApiController
 
     public function store(StoreRequest $request)
     {
-        $vehicle = $this->driverRepository->store($request->validated());
+        try {
+            $vehicle = $this->driverRepository->store($request->validated());
 
-        return $this->generateResponse(
-            new DriverResource($vehicle),
-            message: __('messages.items.success_creation', ['item' => __('Driver')]),
-            status: Response::HTTP_CREATED
-        );
+            return $this->generateResponse(
+                new DriverResource($vehicle),
+                message: __('messages.items.success_creation', ['item' => __('Driver')]),
+                status: Response::HTTP_CREATED
+            );
+        } catch (\Exception $e) {
+            return $this->generateResponse(message: $e->getMessage(), status: Response::HTTP_BAD_REQUEST);
+        }
     }
 }
