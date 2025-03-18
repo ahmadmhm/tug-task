@@ -9,6 +9,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::group(['prefix' => 'v1'], function () {
-    Route::apiResource('vehicles', V1\VehicleController::class);
-    Route::apiResource('drivers', V1\DriverController::class);
+    Route::apiResource('vehicles', V1\VehicleController::class)->only('index', 'store');
+    Route::apiResource('drivers', V1\DriverController::class)->only('index', 'store');
 });

@@ -1,0 +1,459 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Aftab APIs",
+        "description": "Aftab Api Gateway Documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080/api",
+            "description": "local server"
+        },
+        {
+            "url": "https://api.tug.com/api",
+            "description": "Main server"
+        }
+    ],
+    "paths": {
+        "/api": {},
+        "/v1/drivers": {
+            "get": {
+                "tags": [
+                    "driver"
+                ],
+                "summary": "get driver list",
+                "description": "",
+                "operationId": "v1.drivers",
+                "responses": {
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, internal server error. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "You are not authorized!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "response message",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "response data",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "default": "345"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "licenseNumber": {
+                                                    "type": "string"
+                                                },
+                                                "phoneNumber": {
+                                                    "type": "string"
+                                                },
+                                                "createdAt": {
+                                                    "type": "string",
+                                                    "default": "2023-11-19T18:01:19.000000Z"
+                                                }
+                                            },
+                                            "type": "object",
+                                            "example": [
+                                                {
+                                                    "id": 94,
+                                                    "name": "Ali Alison",
+                                                    "licenseNumber": "jfh37465346",
+                                                    "phoneNumber": "345 - 8737453",
+                                                    "createdAt": "2025-03-18T15:15:35.000000Z"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "driver"
+                ],
+                "summary": "store driver data",
+                "description": "",
+                "operationId": "driver.save",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "driver name",
+                                        "type": "string",
+                                        "example": "John"
+                                    },
+                                    "licenseNumber": {
+                                        "type": "string",
+                                        "example": "YHY643857"
+                                    },
+                                    "phoneNumber": {
+                                        "type": "string",
+                                        "example": "98764527623"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, internal server error. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "You are not authorized!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "response message",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "response data",
+                                            "properties": {
+                                                "name": {
+                                                    "description": "driver name",
+                                                    "type": "string",
+                                                    "example": "John"
+                                                },
+                                                "licenseNumber": {
+                                                    "type": "string",
+                                                    "example": "YHY643857"
+                                                },
+                                                "phoneNumber": {
+                                                    "type": "string",
+                                                    "example": "98764527623"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/v1/vehicles": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "get vehicle list",
+                "description": "",
+                "operationId": "v1.vehicles",
+                "responses": {
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, internal server error. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "You are not authorized!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "response message",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "response data",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "default": "345"
+                                                },
+                                                "plateNumber": {
+                                                    "type": "string"
+                                                },
+                                                "brand": {
+                                                    "type": "string"
+                                                },
+                                                "model": {
+                                                    "type": "string"
+                                                },
+                                                "year": {
+                                                    "type": "string"
+                                                },
+                                                "createdAt": {
+                                                    "type": "string",
+                                                    "default": "2023-11-19T18:01:19.000000Z"
+                                                }
+                                            },
+                                            "type": "object",
+                                            "example": [
+                                                {
+                                                    "id": 94,
+                                                    "plateNumber": "jvhdfj-5679833549",
+                                                    "brand": "MyCar",
+                                                    "model": "Porche",
+                                                    "year": 2003,
+                                                    "createdAt": "2025-03-18T15:15:35.000000Z"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "store vehicle data",
+                "description": "",
+                "operationId": "vehicle.save",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "plateNumber": {
+                                        "description": "vehicle plate number",
+                                        "type": "string",
+                                        "example": "John"
+                                    },
+                                    "brand": {
+                                        "type": "string",
+                                        "example": "Porche"
+                                    },
+                                    "model": {
+                                        "type": "string",
+                                        "example": "Porche"
+                                    },
+                                    "year": {
+                                        "type": "integre",
+                                        "example": "2012"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, internal server error. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "You are not authorized!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "response message",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "response data",
+                                            "properties": {
+                                                "plateNumber": {
+                                                    "description": "vehicle plate number",
+                                                    "type": "string",
+                                                    "example": "John"
+                                                },
+                                                "brand": {
+                                                    "type": "string",
+                                                    "example": "Porche"
+                                                },
+                                                "model": {
+                                                    "type": "string",
+                                                    "example": "Porche"
+                                                },
+                                                "year": {
+                                                    "type": "integre",
+                                                    "example": "2012"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "Bearer": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "Bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "driver",
+            "description": "driver"
+        },
+        {
+            "name": "Vehicle",
+            "description": "Vehicle"
+        }
+    ]
+}

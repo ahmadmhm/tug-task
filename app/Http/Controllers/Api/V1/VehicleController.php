@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Api\BaseApiController;
-use App\Http\Requests\V1\Driver\StoreRequest;
-use App\Http\Resources\VehicleResource;
+use App\Http\Requests\V1\Vehicle\StoreRequest;
+use App\Http\Resources\V1\VehicleResource;
 use App\Repositories\VehicleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

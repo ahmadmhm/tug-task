@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Api\BaseApiController;
 use App\Http\Requests\V1\Driver\StoreRequest;
-use App\Http\Resources\DriverResource;
+use App\Http\Resources\V1\DriverResource;
 use App\Repositories\DriverRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
